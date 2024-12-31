@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+  color: #333;
+}
+
+body {
+  padding-top: 80px;
+  /* Push the content down */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+}
+
+/* Instruction Text */
+.instruction-text {
+  text-align: center;
+  margin-top: 20px;
+  /* Add space above the text */
+  margin-bottom: 20px;
+  /* Add space below the text */
+  font-size: 16px;
+  color: #555;
+}
+
+/* Navigation Bar */
+.NavigationBar {
+  position: fixed;
+  top: 0;
+  left: 25%;
+  width: 50%;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #f2f2f2;
+  z-index: 10;
+}
+
+.NavigationBar h1 {
+  font-size: 24px;
+  color: #f1356d;
+}
+
+.NavigationBar a {
+  margin-left: 16px;
+  text-decoration: none;
+  padding: 6px;
+  color: #333;
+  font-weight: 500;
+}
+
+.NavigationBar a:hover {
+  color: #f1356d;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+button {
+  background-color: #f1356d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #d12e5c;
+}
+
+/* Task List */
+.task-list {
+  text-align: center;
+  margin-top: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-list table {
+  width: 100%;
+  max-width: 50%;
+  margin: 20px auto;
+  border: 2px solid #f1356d;
+  border-collapse: collapse;
+  font-size: 18px;
+  text-align: center;
+}
+
+.task-list th,
+.task-list td {
+  padding: 16px 24px;
+  border: 2px solid #f1356d;
+}
+
+.task-list th {
+  background-color: #f9f9f9;
+  color: #f1356d;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.task-list tr:hover {
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.task-list td {
+  background-color: white;
+  color: #333;
+}
+
+/* Task Details */
+.task-details {
+  padding-left: 20%;
+  margin: 20px auto;
+  max-width: 80%;
+  text-align: left;
+}
+
+.task-details article {
+  padding-left: 20px;
+  border-left: 3px solid #f1356d;
+}
+
+/* Form Styles */
+.create {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.create label {
+  text-align: left;
+  display: block;
+}
+
+.create h2 {
+  font-size: 20px;
+  color: #f1356d;
+  margin-bottom: 30px;
+}
+
+.create input,
+.create textarea,
+.create select {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+}
+
+.create button {
+  background: #f1356d;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
