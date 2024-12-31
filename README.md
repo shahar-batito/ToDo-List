@@ -12,9 +12,10 @@ Setup Instructions
         bash
         node server.js
     d. The backend server will run at http://localhost:3001.
+   e. keep the server running in this bash - **do not close it**
 
-3. Frontend Setup - 
-    a. In Bash - Navigate to the frontend directory
+4. Frontend Setup - 
+    a. In **new** Bash - Navigate to the frontend directory
     b. Install dependencies:
         bash
         npm install
