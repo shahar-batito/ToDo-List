@@ -1,8 +1,18 @@
 const fs = require("fs");
 const path = require("path");
 
+/**
+ * TaskManager
+ * 
+ * A class responsible for managing tasks stored in the filesystem. Tasks are stored as JSON files, 
+ * with each task represented by a separate file.
+ */
 class TaskManager {
 
+    /**
+     * Constructor for TaskManager
+     * @param {string} directoryPath - The path to the directory where task files are stored.
+     */
     constructor(directoryPath) {
         this.directoryPath = directoryPath;
         // Ensure the directory exists
@@ -14,8 +24,8 @@ class TaskManager {
 
 
     /**
-     * Reads all the tasks from the database
-     * @returns an array of tasks
+     * Reads all tasks from the storage directory.
+     * @returns {Map} A Map of tasks with `task_id` as the key.
      */
     readTasks() {
         try {
@@ -36,8 +46,9 @@ class TaskManager {
     }
 
     /**
-     * Reads a single task from the database
-     * @returns the task 
+     * Reads a single task by its ID.
+     * @param {number} taskId - The ID of the task to read.
+     * @returns {Object|null} The task object if found, or null if not found or on error.
      */
     readTaskById(taskId) {
         try {
@@ -51,8 +62,8 @@ class TaskManager {
     }
 
     /**
-     * Writes a single task to the database
-     * @param {*} task 
+     * Writes a task to the storage directory.
+     * @param {Object} task - The task object to write.
      */
     writeTask(task) {
         try {
@@ -65,9 +76,9 @@ class TaskManager {
 
 
     /**
-     * Adds a new task
-     * @param {*} taskData 
-     * @returns the newly created task
+     * Adds a new task.
+     * @param {Object} taskData - Data for the new task.
+     * @returns {Object} The newly created task object.
      */
     addTask(taskData) {
         const newTaskId = this.freeID;
@@ -83,10 +94,10 @@ class TaskManager {
     }
 
     /**
-     * Updates an existing task
-     * @param {*} taskId 
-     * @param {*} updates 
-     * @returns the updated task, or null if not found
+     * Updates an existing task.
+     * @param {number} taskId - The ID of the task to update.
+     * @param {Object} updates - Data to update the task with.
+     * @returns {Object|null} The updated task object, or null if the task is not found.
      */
     updateTask(taskId, updates) {
         const task = this.readTaskById(taskId);
@@ -104,10 +115,10 @@ class TaskManager {
     }
 
     /**
-     * Deletes a task by ID
-     * @param {*} taskId 
-     * @returns true if the task was deleted, false otherwise
-     */
+    * Deletes a task by its ID.
+    * @param {number} taskId - The ID of the task to delete.
+    * @returns {boolean} True if the task was deleted, false otherwise.
+    */
     deleteTask(taskId) {
         try {
             const filePath = path.join(this.directoryPath, `${taskId}.json`);

@@ -3,13 +3,17 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { addTask, updateTask, fetchTaskById } from "./API";
 
+/**
+ * Component for creating or editing tasks.
+ * Handles both "add new task" and "edit existing task" functionalities based on the URL parameters.
+ */
 const Create = () => {
-    const { id } = useParams(); // Get the task ID from the URL
+    const { id } = useParams();
     const [name, setTitle] = useState('');
     const [pageTitle, setPageTitle] = useState('Add a New Task');
     const [description, setDescription] = useState('');
     const [dueDate, setDueDate] = useState('');
-    const [userID] = useState('1');
+    const [userID] = useState('1'); // Default user ID 
     const [priorityID, setPriority] = useState('1-Low');
     const [statusID, setStatus] = useState('1-Draft');
     const [isEditMode, setIsEditMode] = useState(false);
@@ -17,23 +21,30 @@ const Create = () => {
 
     const navigate = useNavigate();
 
+    /**
+     * Handle form submission to add or update a task.
+     * Differentiates between add and edit based on `isEditMode`.
+     */
     const handleSubmit = (e) => {
         e.preventDefault();
         const task = {
             title: name, description: description, due_date: dueDate,
             assigned_user_id: userID, priority_id: priorityID, status_id: statusID
         };
-
         if (isEditMode) {
-            updateTask(id, task).then(() => navigate('/tasks'));
+            updateTask(id, task).then(() => navigate('/'));
         } else {
-            addTask(task).then(() => navigate('/tasks'));
+            addTask(task).then(() => navigate('/'));
         }
     }
 
+    /**
+     * Fetch task details if the component is in edit mode (i.e., `id` exists in the URL).
+     * Populates the form fields with the existing task data.
+     */
     useEffect(() => {
         if (id) {
-            setIsEditMode(true); // Switch to edit mode if ID is provided
+            setIsEditMode(true);
             fetchTaskById(id)
                 .then((response) => {
                     const task = response.data;
@@ -46,7 +57,8 @@ const Create = () => {
                 })
                 .catch((error) => console.error("Error fetching task details:", error));
         }
-    }, [id]);
+    }, [id]); // Only run this effect when the `id` changes
+
 
     return (
         <div className="create">

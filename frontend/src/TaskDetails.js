@@ -1,35 +1,40 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
-import { deleteTask, fetchTaskById } from "./API"; // Import the API function
+import { deleteTask, fetchTaskById } from "./API";
 import { useNavigate } from "react-router-dom";
 
-
+/**
+ * TaskDetails Component
+ * 
+ * This component is used to display detailed information about a specific task
+ * and provides options to delete or edit the task.
+ */
 const TaskDetails = () => {
-  const { id } = useParams(); // Get the task ID from the URL
-  const [task, setTask] = useState(null); // State to store task data
-  const [error, setError] = useState(null); // State to store any errors
-  const [isLoading, setIsLoading] = useState(true); // State to track loading
+  const { id } = useParams();
+  const [task, setTask] = useState(null);
   const navigate = useNavigate();
 
+  /**
+   * Fetch the task details when the component mounts or when the task ID changes.
+   */
   useEffect(() => {
-    // Fetch the task data when the component mounts
     fetchTaskById(id)
       .then((response) => {
-        setTask(response.data); // Set the task data
-        setIsLoading(false); // Mark loading as false
+        setTask(response.data);
       })
-      .catch((err) => {
-        setError("Failed to fetch task details."); // Set error message
-        setIsLoading(false); // Mark loading as false
-      });
-  }, [id]); // Dependency array ensures this runs when `id` changes
+      .catch((error) => console.error("Failed to fetch task details:", error));
 
-  // Handler to delete a task and navigate to the home page
+  }, [id]);
+
+  /**
+   * Handles the deletion of a task and redirects the user to the home page.
+   * @param {string} taskId - The ID of the task to delete.
+   */
   const handleDelete = (taskId) => {
     deleteTask(taskId)
       .then(() => {
-        navigate("/"); // Redirect to the home page
+        navigate("/");
       })
       .catch((error) => console.error("Error deleting task:", error));
   };
@@ -37,14 +42,13 @@ const TaskDetails = () => {
   return (
     <div>
       <NavigationBar />
+      {/* Buttons for task actions */}
       <div className="buttons">
         <button onClick={() => handleDelete(id)}>Delete Task</button>
         <button onClick={() => navigate(`/create/${task.task_id}`)}>Edit Task</button>
       </div>
+      {/* Display task details */}
       <div className="task-details">
-
-        {isLoading && <div>Loading...</div>} {/* Show while loading */}
-        {error && <div>{error}</div>} {/* Show error if it exists */}
         {task && ( /* Render the task details if task data is available */
           <article>
             <h1>{task.title}</h1>
@@ -65,7 +69,6 @@ const TaskDetails = () => {
           </article>
         )}
       </div>
-
     </div>
   );
 };
