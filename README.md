@@ -1,29 +1,29 @@
 Setup Instructions
 1. Clone the Repository to your computer
 
-2. Backend Setup
-    Navigate to the backend directory:
+2. Backend Setup - 
+    a. Navigate to the backend directory:
         bash
         cd backend
-    Install dependencies:
+    b. Install dependencies:
         bash
         npm install
-    Start the backend server:
+    c. Start the backend server:
         bash
         node server.js
-    The backend server will run at http://localhost:3001.
+    d. The backend server will run at http://localhost:3001.
 
-3. Frontend Setup
-    In Bash - Navigate to the frontend directory
-    Install dependencies:
+3. Frontend Setup - 
+    a. In Bash - Navigate to the frontend directory
+    b. Install dependencies:
         bash
         npm install
-    Start the frontend application:
+    c. Start the frontend application:
         bash
         npm start
-    The frontend application will run at http://localhost:3000.
+    d. The frontend application will run at http://localhost:3000.
 
-How to Use
+How to Use - 
 Open a web browser and go to http://localhost:3000.
 
 
