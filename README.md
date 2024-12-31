@@ -42,4 +42,4 @@ Update Task: Update an existing task with new data.
 
 Delete Task: Remove a task using its ID.
 
-**for assigned_user_id i used a default value, as there are not active users on the app
+**for assigned_user_id i used a default value, as there are no active users on the app
